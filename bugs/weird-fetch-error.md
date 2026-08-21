@@ -1,16 +1,18 @@
-# Why did this fetch not fail on 404?
+# Why did fetch not fail on 404?
 
-I assumed `fetch()` would jump to `.catch()` if the server returned a 404 or 500 error.
+### 1. What happened
+API returned a 404 Not Found, but my `.catch()` block never ran. The app displayed "User: undefined" instead of showing an error.
 
-It did NOT.
+### 2. What I initially thought
+Thought the promise was silently resolving because of an unhandled async error.
 
-Turns out `fetch()` only rejects if there is a real network failure (like no internet or CORS blocked). A 404 response is still a successful HTTP response.
+### 3. What actually caused it
+Native `fetch()` only rejects on network failures (e.g. offline, DNS failed). HTTP status codes 404, 500, etc. count as successful HTTP transactions.
 
-Fix:
+### 4. The fix
 ```javascript
 const res = await fetch('/api/user');
 if (!res.ok) {
-  throw new Error('HTTP status: ' + res.status);
+  throw new Error('Request failed with status ' + res.status);
 }
-const data = await res.json();
 ```

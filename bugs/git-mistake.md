@@ -1,15 +1,22 @@
 # Accidentally committed directly to main
 
-I meant to make a feature branch, but made 2 commits straight on `main` locally.
+### 1. What happened
+Made 2 commits on local `main` before realizing I was supposed to be on a new feature branch.
 
-How I fixed it:
+### 2. What I initially thought
+Thought I had to undo the commits manually, copy-paste code changes, and commit again.
+
+### 3. What actually caused it
+Forgot to run `git checkout -b feature` before coding.
+
+### 4. The fix
 ```bash
-# 1. Create a new branch pointing at current HEAD (keeps my 2 commits)
-git branch my-new-feature
+# 1. Point a new branch to current HEAD (saves both commits)
+git branch new-feature
 
-# 2. Reset main back to match remote origin/main
+# 2. Reset local main back to remote
 git reset --hard origin/main
 
-# 3. Switch to the new branch
-git checkout my-new-feature
+# 3. Switch to feature branch
+git checkout new-feature
 ```

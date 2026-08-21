@@ -1,26 +1,26 @@
 # Bash Cheatsheet
 
 ```bash
-# Check if file exists
-if [ -f "config.json" ]; then
-  echo "Found config"
-fi
+# If file / dir exists
+[ -f "file.txt" ] && echo "file exists"
+[ -d "folder" ] && echo "dir exists"
+[ -z "$VAR" ] && echo "var is empty"
 
-# Check if directory exists
-if [ -d "dist" ]; then
-  rm -rf dist
-fi
-
-# Check if variable is empty
-if [ -z "$VAR" ]; then
-  echo "VAR is not set"
-fi
-
-# Loop over files
-for f in *.txt; do
-  echo "Processing $f"
+# Loops
+for f in *.js; do
+  echo "File: $f"
 done
 
-# Current script directory
+# Script directory
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Exit immediately if command fails
+set -e
+
+# Run last command as root
+sudo !!
 ```
+
+Notes:
+- `$0` = script name, `$1` = first argument, `$#` = argument count.
+- Use `set -e` at the top of scripts so it stops on first error instead of plowing ahead.

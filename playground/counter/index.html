@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Minimal Counter</title>
+  <style>
+    body { font-family: system-ui, sans-serif; text-align: center; margin-top: 60px; }
+    .display { font-size: 4rem; font-weight: bold; margin-bottom: 20px; }
+    button { font-size: 1.5rem; padding: 10px 20px; margin: 0 5px; cursor: pointer; border-radius: 6px; border: 1px solid #ccc; }
+    .hint { color: #888; font-size: 0.85rem; margin-top: 15px; }
+  </style>
+</head>
+<body>
+  <div class="display" id="count">0</div>
+  <div>
+    <button id="dec">-</button>
+    <button id="reset">Reset</button>
+    <button id="inc">+</button>
+  </div>
+  <div class="hint">Shortcut: Up/Down arrow keys or +/- keys</div>
+
+  <script>
+    let n = 0;
+    const el = document.getElementById('count');
+
+    function update(val) {
+      n = val;
+      el.textContent = n;
+      el.style.color = n > 0 ? '#16a34a' : n < 0 ? '#dc2626' : '#0f172a';
+    }
+
+    document.getElementById('inc').onclick = () => update(n + 1);
+    document.getElementById('dec').onclick = () => update(n - 1);
+    document.getElementById('reset').onclick = () => update(0);
+
+    window.onkeydown = (e) => {
+      if (e.key === 'ArrowUp' || e.key === '+') update(n + 1);
+      if (e.key === 'ArrowDown' || e.key === '-') update(n - 1);
+      if (e.key === '0' || e.key === 'r') update(0);
+    };
+  </script>
+</body>
+</html>

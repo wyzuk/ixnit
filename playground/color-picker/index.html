@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RGB Color Picker</title>
+  <style>
+    body { font-family: system-ui, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; transition: background 0.1s; }
+    .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); width: 280px; }
+    .row { margin-bottom: 12px; }
+    label { display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: bold; }
+    input[type=range] { width: 100%; margin-top: 4px; }
+    .hex { text-align: center; font-family: monospace; font-size: 1.3rem; margin-top: 15px; padding: 8px; background: #eee; border-radius: 6px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="row">
+      <label>Red: <span id="rVal">100</span></label>
+      <input type="range" id="r" min="0" max="255" value="100">
+    </div>
+    <div class="row">
+      <label>Green: <span id="gVal">150</span></label>
+      <input type="range" id="g" min="0" max="255" value="150">
+    </div>
+    <div class="row">
+      <label>Blue: <span id="bVal">240</span></label>
+      <input type="range" id="b" min="0" max="255" value="240">
+    </div>
+    <div class="hex" id="hexVal" title="Click to copy">#6496f0</div>
+  </div>
+
+  <script>
+    const r = document.getElementById('r');
+    const g = document.getElementById('g');
+    const b = document.getElementById('b');
+    const hex = document.getElementById('hexVal');
+
+    function update() {
+      document.getElementById('rVal').textContent = r.value;
+      document.getElementById('gVal').textContent = g.value;
+      document.getElementById('bVal').textContent = b.value;
+
+      const toHex = (n) => Number(n).toString(16).padStart(2, '0');
+      const code = `#${toHex(r.value)}${toHex(g.value)}${toHex(b.value)}`;
+
+      hex.textContent = code;
+      document.body.style.background = code;
+    }
+
+    [r, g, b].forEach(input => input.addEventListener('input', update));
+    hex.onclick = () => {
+      navigator.clipboard.writeText(hex.textContent);
+      hex.textContent = 'Copied!';
+      setTimeout(update, 800);
+    };
+    update();
+  </script>
+</body>
+</html>

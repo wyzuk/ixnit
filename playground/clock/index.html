@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Canvas & Digital Clock</title>
+  <style>
+    body { background: #111; color: #eee; font-family: monospace; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+    #digital { font-size: 3rem; margin-top: 15px; letter-spacing: 2px; }
+  </style>
+</head>
+<body>
+  <canvas id="clockCanvas" width="160" height="160"></canvas>
+  <div id="digital">00:00:00</div>
+
+  <script>
+    const canvas = document.getElementById('clockCanvas');
+    const ctx = canvas.getContext('2d');
+    const dig = document.getElementById('digital');
+    const r = canvas.width / 2;
+
+    function draw() {
+      const now = new Date();
+      const h = now.getHours();
+      const m = now.getMinutes();
+      const s = now.getSeconds();
+
+      dig.textContent = [h, m, s].map(v => String(v).padStart(2, '0')).join(':');
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.save();
+      ctx.translate(r, r);
+
+      // Face
+      ctx.strokeStyle = '#444';
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.arc(0, 0, r - 5, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Hands
+      const sAngle = (s * Math.PI) / 30;
+      const mAngle = (m * Math.PI) / 30;
+      const hAngle = ((h % 12) * Math.PI) / 6 + (m * Math.PI) / 360;
+
+      drawHand(hAngle, r * 0.5, 4, '#eee');
+      drawHand(mAngle, r * 0.7, 3, '#aaa');
+      drawHand(sAngle, r * 0.8, 1, '#e11d48');
+
+      ctx.restore();
+    }
+
+    function drawHand(angle, length, width, color) {
+      ctx.save();
+      ctx.rotate(angle);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = width;
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(0, -length);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    setInterval(draw, 1000);
+    draw();
+  </script>
+</body>
+</html>

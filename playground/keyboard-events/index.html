@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Keyboard Event Tester</title>
+  <style>
+    body { font-family: monospace; background: #0f172a; color: #f8fafc; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+    .key-box { font-size: 3rem; font-weight: bold; background: #1e293b; padding: 20px 40px; border-radius: 8px; border: 1px solid #334155; margin-bottom: 20px; }
+    table { border-collapse: collapse; width: 340px; background: #1e293b; border-radius: 6px; overflow: hidden; }
+    td { padding: 8px 14px; border-bottom: 1px solid #334155; }
+    td:first-child { color: #94a3b8; }
+  </style>
+</head>
+<body>
+  <div class="key-box" id="mainKey">Press any key</div>
+  <table>
+    <tr><td>e.key</td><td id="kKey">-</td></tr>
+    <tr><td>e.code</td><td id="kCode">-</td></tr>
+    <tr><td>e.keyCode</td><td id="kKeyCode">-</td></tr>
+    <tr><td>e.shiftKey</td><td id="kShift">-</td></tr>
+    <tr><td>e.ctrlKey</td><td id="kCtrl">-</td></tr>
+  </table>
+
+  <script>
+    window.addEventListener('keydown', (e) => {
+      document.getElementById('mainKey').textContent = e.key === ' ' ? 'Space' : e.key;
+      document.getElementById('kKey').textContent = e.key;
+      document.getElementById('kCode').textContent = e.code;
+      document.getElementById('kKeyCode').textContent = e.keyCode;
+      document.getElementById('kShift').textContent = e.shiftKey;
+      document.getElementById('kCtrl').textContent = e.ctrlKey;
+    });
+  </script>
+</body>
+</html>
