@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Native HTML5 Form Validation</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 450px; margin: 2rem auto; padding: 0 1rem; }
+    .form-group { margin-bottom: 1rem; }
+    label { display: block; font-weight: 600; margin-bottom: 0.25rem; }
+    input { width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+    
+    /* Native pseudo-classes for validation feedback */
+    input:focus:invalid { border-color: #ef4444; outline: 1px solid #ef4444; }
+    input:focus:valid { border-color: #22c55e; }
+
+    .help-text { font-size: 0.8rem; color: #64748b; margin-top: 0.2rem; }
+    button { padding: 0.6rem 1.2rem; background: #0284c7; color: white; border: none; border-radius: 4px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>Native HTML Form Validation</h2>
+  <form id="signup-form" novalidate>
+    <div class="form-group">
+      <label for="username">Username (min 4 chars, alphanumeric)</label>
+      <input type="text" id="username" name="username" required minlength="4" pattern="^[a-zA-Z0-9_]+$" placeholder="e.g. dev_sarah">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required placeholder="you@domain.com">
+    </div>
+
+    <div class="form-group">
+      <label for="age">Age (18 - 99)</label>
+      <input type="number" id="age" name="age" min="18" max="99" required>
+    </div>
+
+    <button type="submit">Submit Form</button>
+    <p id="msg" style="margin-top:1rem; font-weight:bold;"></p>
+  </form>
+
+  <script>
+    const form = document.getElementById('signup-form');
+    const msg = document.getElementById('msg');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity(); // Uses native browser tooltip UI!
+        msg.style.color = '#ef4444';
+        msg.textContent = 'Please fix errors before submitting.';
+      } else {
+        msg.style.color = '#16a34a';
+        msg.textContent = 'Form submitted successfully!';
+      }
+    });
+  </script>
+</body>
+</html>

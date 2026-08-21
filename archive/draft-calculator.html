@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Archived: Draft Calculator</title>
+  <style>
+    body { font-family: monospace; padding: 2rem; }
+    .calc { display: grid; grid-template-columns: repeat(4, 50px); gap: 5px; }
+    button { height: 40px; font-size: 1.2rem; cursor: pointer; }
+    #display { grid-column: span 4; height: 40px; text-align: right; padding: 5px; font-size: 1.2rem; margin-bottom: 5px; }
+  </style>
+</head>
+<body>
+  <!-- Abandoned draft: need to rewrite with proper operator precedence instead of eval() -->
+  <h3>Draft Calculator (Deprecated)</h3>
+  <div class="calc">
+    <input type="text" id="display" readonly value="0">
+    <button onclick="press('7')">7</button>
+    <button onclick="press('8')">8</button>
+    <button onclick="press('9')">9</button>
+    <button onclick="press('/')">/</button>
+    <button onclick="press('4')">4</button>
+    <button onclick="press('5')">5</button>
+    <button onclick="press('6')">6</button>
+    <button onclick="press('*')">*</button>
+    <button onclick="press('1')">1</button>
+    <button onclick="press('2')">2</button>
+    <button onclick="press('3')">3</button>
+    <button onclick="press('-')">-</button>
+    <button onclick="press('0')">0</button>
+    <button onclick="clearCalc()">C</button>
+    <button onclick="calc()">=</button>
+    <button onclick="press('+')">+</button>
+  </div>
+
+  <script>
+    let d = document.getElementById('display');
+    function press(v) { if (d.value === '0') d.value = ''; d.value += v; }
+    function clearCalc() { d.value = '0'; }
+    function calc() {
+      try {
+        // Warning: eval is evil, this was just a quick prototype!
+        d.value = eval(d.value);
+      } catch(e) {
+        d.value = 'Error';
+      }
+    }
+  </script>
+</body>
+</html>

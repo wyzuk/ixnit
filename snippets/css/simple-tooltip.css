@@ -1,0 +1,52 @@
+/**
+ * Pure CSS Tooltip (Zero JS required)
+ * Usage: <span class="tooltip" data-tooltip="Hello World!">Hover me</span>
+ */
+
+.tooltip {
+  position: relative;
+  cursor: pointer;
+  border-bottom: 1px dotted currentColor;
+}
+
+.tooltip::before,
+.tooltip::after {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* The tooltip bubble */
+.tooltip::after {
+  content: attr(data-tooltip);
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: #1e293b;
+  color: #ffffff;
+  padding: 0.35rem 0.7rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* The tooltip triangle arrow */
+.tooltip::before {
+  content: '';
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  border: 5px solid transparent;
+  border-top-color: #1e293b;
+}
+
+.tooltip:hover::before,
+.tooltip:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}

@@ -1,0 +1,34 @@
+/**
+ * CSS Variables Dark Mode with prefers-color-scheme support
+ */
+
+:root {
+  --bg-color: #ffffff;
+  --text-color: #1e293b;
+  --card-bg: #f8fafc;
+  --border-color: #e2e8f0;
+}
+
+/* 1. Automatic OS-level Dark Mode */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg-color: #0f172a;
+    --text-color: #f1f5f9;
+    --card-bg: #1e293b;
+    --border-color: #334155;
+  }
+}
+
+/* 2. Manual toggle override (via document.documentElement.setAttribute('data-theme', 'dark')) */
+[data-theme="dark"] {
+  --bg-color: #0f172a;
+  --text-color: #f1f5f9;
+  --card-bg: #1e293b;
+  --border-color: #334155;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}

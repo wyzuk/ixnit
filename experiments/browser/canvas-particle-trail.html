@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas Particle Trail</title>
+  <style>
+    body { margin: 0; overflow: hidden; background: #090d16; }
+    canvas { display: block; }
+    .hint {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      color: #64748b;
+      font-family: system-ui, sans-serif;
+      font-size: 0.85rem;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="hint">Move mouse around to spawn glowing particle trail</div>
+  <canvas id="canvas"></canvas>
+
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const particles = [];
+
+    class Particle {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.size = Math.random() * 5 + 2;
+        this.speedX = (Math.random() - 0.5) * 3;
+        this.speedY = (Math.random() - 0.5) * 3;
+        this.color = `hsl(${Math.random() * 60 + 190}, 90%, 60%)`;
+        this.life = 1;
+        this.decay = Math.random() * 0.02 + 0.015;
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.life -= this.decay;
+        if (this.size > 0.2) this.size -= 0.05;
+      }
+
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, this.life);
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    window.addEventListener('mousemove', (e) => {
+      for (let i = 0; i < 4; i++) {
+        particles.push(new Particle(e.clientX, e.clientY));
+      }
+    });
+
+    function animate() {
+      // Fade out background slightly to create trail effect
+      ctx.fillStyle = 'rgba(9, 13, 22, 0.2)';
+      ctx.fillRect(0, 0, width, height);
+
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.update();
+        p.draw();
+        if (p.life <= 0) {
+          particles.splice(i, 1);
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clean Responsive Navbar</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      background: #1e293b;
+      color: #f8fafc;
+    }
+    .nav-brand { font-weight: 700; font-size: 1.25rem; }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.25rem;
+    }
+    .nav-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: #ffffff; }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: 1px solid #475569;
+      color: #ffffff;
+      padding: 0.4rem 0.6rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 640px) {
+      .nav-toggle { display: block; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background: #1e293b;
+        padding: 1rem 1.5rem;
+        border-top: 1px solid #334155;
+      }
+      .nav-links.active { display: flex; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar" aria-label="Main Navigation">
+      <div class="nav-brand">Ixnit Dev</div>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation menu">☰</button>
+      <ul class="nav-links">
+        <li><a href="#notes">Notes</a></li>
+        <li><a href="#snippets">Snippets</a></li>
+        <li><a href="#experiments">Experiments</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <script>
+    const toggleBtn = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    toggleBtn.addEventListener('click', () => {
+      const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      toggleBtn.setAttribute('aria-expanded', !isExpanded);
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

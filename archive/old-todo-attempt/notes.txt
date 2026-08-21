@@ -1,0 +1,7 @@
+Problems with the old approach in old-script.js:
+1. Using list.innerHTML += '...' destroys all existing DOM event listeners and re-parses HTML on every add!
+2. In-line onclick handlers are ugly and cause XSS vulnerabilities if user enters <img src=x onerror=alert(1)>.
+3. No persistence (no localStorage).
+4. No way to filter active vs completed.
+
+Moved to proper state-driven DOM in /experiments/dom/todo-dom/.
