@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h3>Cross-Tab Sync Experiment</h3>
+  <p>Open this file in two browser tabs. Type below to see it update the other tab live.</p>
+
+  <textarea id="box" rows="4" cols="40"></textarea>
+
+  <script>
+    const box = document.getElementById('box');
+    const KEY = 'ixnit_sync_text';
+
+    box.value = localStorage.getItem(KEY) || '';
+
+    box.addEventListener('input', (e) => {
+      localStorage.setItem(KEY, e.target.value);
+    });
+
+    // storage event fires on all other tabs when localStorage changes
+    window.addEventListener('storage', (e) => {
+      if (e.key === KEY) {
+        box.value = e.newValue || '';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+/* 1. Flexbox centering */
+.center-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 2. Grid centering */
+.center-grid {
+  display: grid;
+  place-items: center;
+}
+
+/* 3. Absolute center */
+.center-abs {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h2>Web Components: Simple Custom Element</h2>
+
+  <!-- Custom tag -->
+  <user-badge name="Alice" role="Admin"></user-badge>
+  <user-badge name="Bob" role="Editor"></user-badge>
+
+  <script>
+    class UserBadge extends HTMLElement {
+      connectedCallback() {
+        const name = this.getAttribute('name') || 'Guest';
+        const role = this.getAttribute('role') || 'User';
+
+        this.innerHTML = `
+          <div style="display:inline-block; padding: 6px 12px; margin: 4px; background: #e0f2fe; border-radius: 16px; font-family: sans-serif;">
+            <strong>${name}</strong> <span style="font-size: 0.8em; color: #0369a1;">(${role})</span>
+          </div>
+        `;
+      }
+    }
+
+    customElements.define('user-badge', UserBadge);
+  </script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+Random scrap from before:
+- test server port 8000
+- remember: git cherry-pick <hash>
+- fix css alignment on mobile menu
+- todo: look up regex lookahead syntax

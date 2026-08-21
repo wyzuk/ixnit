@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: monospace; padding: 30px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 50px); gap: 5px; max-width: 220px; }
+    #out { grid-column: span 4; height: 35px; text-align: right; font-size: 1.2em; padding: 5px; }
+    button { height: 40px; font-size: 1.1em; }
+  </style>
+</head>
+<body>
+  <div class="grid">
+    <input id="out" readonly value="0">
+    <button onclick="c()">C</button>
+    <button onclick="p('/')">/</button>
+    <button onclick="p('*')">*</button>
+    <button onclick="p('-')">-</button>
+    <button onclick="p('7')">7</button>
+    <button onclick="p('8')">8</button>
+    <button onclick="p('9')">9</button>
+    <button onclick="p('+')">+</button>
+    <button onclick="p('4')">4</button>
+    <button onclick="p('5')">5</button>
+    <button onclick="p('6')">6</button>
+    <button onclick="eq()" style="grid-row: span 2; height: 85px;">=</button>
+    <button onclick="p('1')">1</button>
+    <button onclick="p('2')">2</button>
+    <button onclick="p('3')">3</button>
+    <button onclick="p('0')" style="grid-column: span 2; width: 105px;">0</button>
+    <button onclick="p('.')">.</button>
+  </div>
+
+  <script>
+    const out = document.getElementById('out');
+    function p(v) { if (out.value === '0') out.value = ''; out.value += v; }
+    function c() { out.value = '0'; }
+    function eq() {
+      try {
+        // quick prototype with Function constructor
+        out.value = Function('"use strict";return (' + out.value + ')')();
+      } catch {
+        out.value = 'Error';
+      }
+    }
+  </script>
+</body>
+</html>

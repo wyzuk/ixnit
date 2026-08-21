@@ -1,35 +1,6 @@
-# OS files
 .DS_Store
 Thumbs.db
-desktop.ini
-
-# Node / JS
 node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-package-lock.json
-yarn.lock
-
-# Editor / IDE
-.vscode/
-!.vscode/settings.json
-!.vscode/launch.json
-.idea/
-*.swp
-*.swo
-*~
-
-# Logs & temp
 *.log
 tmp/
-temp/
-.cache/
-dist/
-build/
-
-# Local environment
 .env
-.env.local
-.env.*.local

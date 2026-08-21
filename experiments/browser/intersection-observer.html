@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .spacer { height: 100vh; background: #eee; padding: 20px; }
+    .box { height: 100px; background: orange; transition: all 0.5s; opacity: 0.2; }
+    .box.visible { opacity: 1; transform: scale(1.05); background: green; color: white; }
+  </style>
+</head>
+<body>
+  <div class="spacer">Scroll down to see the box trigger</div>
+  <div class="box" id="target">I am the target box</div>
+  <div class="spacer"></div>
+
+  <script>
+    const target = document.getElementById('target');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          console.log('Target entered viewport!');
+        } else {
+          entry.target.classList.remove('visible');
+        }
+      });
+    }, { threshold: 0.5 });
+
+    observer.observe(target);
+  </script>
+</body>
+</html>

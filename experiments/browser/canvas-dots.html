@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body style="margin:0; overflow:hidden;">
+  <canvas id="c"></canvas>
+  <script>
+    const canvas = document.getElementById('c');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    window.addEventListener('click', (e) => {
+      ctx.fillStyle = '#' + Math.floor(Math.random()*16777215).toString(16);
+      ctx.beginPath();
+      ctx.arc(e.clientX, e.clientY, 20, 0, Math.PI * 2);
+      ctx.fill();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h3>Event Delegation Test</h3>
+  <p>Instead of adding click listener to each button, add ONE to the parent &lt;ul&gt;.</p>
+
+  <ul id="item-list">
+    <li>Item 1 <button class="del">x</button></li>
+    <li>Item 2 <button class="del">x</button></li>
+    <li>Item 3 <button class="del">x</button></li>
+  </ul>
+  <button id="add-btn">Add New Item</button>
+
+  <script>
+    const list = document.getElementById('item-list');
+    const addBtn = document.getElementById('add-btn');
+
+    // Single listener on parent
+    list.addEventListener('click', (e) => {
+      if (e.target.classList.contains('del')) {
+        e.target.parentElement.remove();
+        console.log('Item deleted via delegation');
+      }
+    });
+
+    addBtn.addEventListener('click', () => {
+      const li = document.createElement('li');
+      li.innerHTML = `Item ${list.children.length + 1} <button class="del">x</button>`;
+      list.appendChild(li);
+    });
+  </script>
+</body>
+</html>

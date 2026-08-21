@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: monospace; text-align: center; margin-top: 50px; }
+    #time { font-size: 3rem; margin-bottom: 20px; }
+    button { padding: 8px 16px; font-size: 1rem; margin: 0 5px; }
+  </style>
+</head>
+<body>
+  <div id="time">00:00.0</div>
+  <button id="start">Start</button>
+  <button id="stop">Stop</button>
+  <button id="reset">Reset</button>
+
+  <script>
+    let timer = null;
+    let ms = 0;
+    const timeEl = document.getElementById('time');
+
+    function update() {
+      const totalSec = Math.floor(ms / 10);
+      const m = Math.floor(totalSec / 60);
+      const s = totalSec % 60;
+      const tenths = ms % 10;
+      timeEl.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}.${tenths}`;
+    }
+
+    document.getElementById('start').onclick = () => {
+      if (!timer) timer = setInterval(() => { ms++; update(); }, 100);
+    };
+    document.getElementById('stop').onclick = () => {
+      clearInterval(timer);
+      timer = null;
+    };
+    document.getElementById('reset').onclick = () => {
+      clearInterval(timer);
+      timer = null;
+      ms = 0;
+      update();
+    };
+  </script>
+</body>
+</html>

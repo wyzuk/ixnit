@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quick Todo Sandbox</title>
+  <style>
+    body { font-family: sans-serif; max-width: 400px; margin: 40px auto; padding: 0 10px; }
+    input[type="text"] { width: 70%; padding: 8px; }
+    button { padding: 8px 12px; }
+    ul { list-style: none; padding: 0; margin-top: 20px; }
+    li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee; }
+    li.done span { text-decoration: line-through; color: #888; }
+  </style>
+</head>
+<body>
+  <h2>Tasks</h2>
+  <form id="form">
+    <input type="text" id="inp" placeholder="New task..." required>
+    <button type="submit">Add</button>
+  </form>
+  <ul id="list"></ul>
+
+  <script src="app.js"></script>
+</body>
+</html>

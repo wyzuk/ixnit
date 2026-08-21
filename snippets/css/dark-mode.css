@@ -1,0 +1,19 @@
+/* Auto dark mode based on OS setting */
+:root {
+  --bg: #ffffff;
+  --text: #0f172a;
+  --card: #f1f5f9;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --text: #f8fafc;
+    --card: #1e293b;
+  }
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}

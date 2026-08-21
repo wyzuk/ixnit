@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h3>'input' vs 'change' Event Experiment</h3>
+  <input type="text" id="txt" placeholder="Type here...">
+  <p>Input event: <span id="input-val"></span></p>
+  <p>Change event: <span id="change-val"></span></p>
+
+  <script>
+    const txt = document.getElementById('txt');
+    // 'input' fires on EVERY keystroke
+    txt.addEventListener('input', (e) => {
+      document.getElementById('input-val').textContent = e.target.value;
+    });
+    // 'change' only fires when input loses focus (blur) or user presses Enter
+    txt.addEventListener('change', (e) => {
+      document.getElementById('change-val').textContent = e.target.value;
+    });
+  </script>
+</body>
+</html>
