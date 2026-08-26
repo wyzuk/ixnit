@@ -2,7 +2,7 @@
 
 My personal coding notebook, experiment sandbox, and developer knowledge base.
 
-I built this repo to keep track of things I learn, snippet recipes I re-use across projects, debugging gotchas that cost me hours, and mini-experiments where I test browser APIs or vanilla JavaScript patterns without spinning up heavy boilerplate.!!
+I built this repo to keep track of things I learn, snippet recipes I re-use across projects, debugging gotchas that cost me hours, and mini-experiments where I test browser APIs or vanilla JavaScript patterns without spinning up heavy boilerplate.
 
 Everything here is written by hand as I work through real problems, tutorials, documentation, and side projects.
 
