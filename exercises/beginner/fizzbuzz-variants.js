@@ -8,7 +8,6 @@
  * - Otherwise print the number
  */
 
-// 1. Standard readable version
 function fizzBuzzStandard(n) {
   const results = [];
   for (let i = 1; i <= n; i++) {
@@ -25,7 +24,6 @@ function fizzBuzzStandard(n) {
   return results;
 }
 
-// 2. Extensible map version (easy to add "7 -> Bazz", "11 -> Bizz")
 function fizzBuzzExtensible(n, rules = { 3: 'Fizz', 5: 'Buzz', 7: 'Bazz' }) {
   const results = [];
   for (let i = 1; i <= n; i++) {

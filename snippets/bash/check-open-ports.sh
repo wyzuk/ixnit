@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
-# ==============================================================================
 # check-open-ports.sh
 # Prints active TCP listening ports and the process holding them.
-# ==============================================================================
 
 echo "Active TCP Listening Ports:"
 echo "--------------------------------------------------------"

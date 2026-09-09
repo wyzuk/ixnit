@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
-# ==============================================================================
 # quick-git-status.sh
 # Iterates through all subdirectories in the parent folder and prints git status.
 # Super handy when I have 10 project repos and want to see what's uncommitted.
-# ==============================================================================
 
 PARENT_DIR="${1:-..}"
 

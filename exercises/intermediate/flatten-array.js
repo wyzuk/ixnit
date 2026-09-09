@@ -4,14 +4,12 @@
  * Recreating Array.prototype.flat(Infinity) using recursion & reduce.
  */
 
-// 1. Recursive reduce
 function deepFlatten(arr) {
   return arr.reduce((acc, item) => {
     return acc.concat(Array.isArray(item) ? deepFlatten(item) : item);
   }, []);
 }
 
-// 2. Iterative with stack (avoids call stack limit on deeply nested arrays)
 function flattenIterative(arr) {
   const stack = [...arr];
   const result = [];

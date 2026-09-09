@@ -1,6 +1,4 @@
 // Experimenting with a custom fetch wrapper that supports:
-// 1. Automatic retries
-// 2. Request timeouts using AbortController
 
 async function fetchWithRetryAndTimeout(url, options = {}) {
   const {

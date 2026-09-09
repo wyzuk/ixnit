@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
-# ==============================================================================
 # new-note.sh
 # Scaffolds a new markdown note with frontmatter and standard sections.
 # Usage: ./scripts/helpers/new-note.sh javascript/event-bubbling
-# ==============================================================================
 
 set -e
 

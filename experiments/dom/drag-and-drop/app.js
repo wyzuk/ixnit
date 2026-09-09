@@ -1,8 +1,6 @@
 // HTML5 Drag and Drop experiment
 // What I learned:
-// 1. 'dragover' MUST have e.preventDefault() called on the drop target,
 //    otherwise the 'drop' event will never fire! (Such a weird HTML5 API design)
-// 2. dataTransfer.setData / getData is great for passing IDs.
 
 const cards = document.querySelectorAll('.card');
 const columns = document.querySelectorAll('.column');

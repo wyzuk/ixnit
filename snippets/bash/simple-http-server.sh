@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
-# ==============================================================================
 # simple-http-server.sh
 # Starts a zero-dependency static HTTP server on the given port.
 # Usage: ./simple-http-server.sh 8080
-# ==============================================================================
 
 PORT="${1:-8000}"
 

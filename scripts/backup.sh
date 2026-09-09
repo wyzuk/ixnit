@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
-# ==============================================================================
 # backup.sh
 # Archives the Ixnit knowledge base to a timestamped .tar.gz bundle.
 # Usage: ./scripts/backup.sh [destination-dir]
-# ==============================================================================
 
 set -e
 

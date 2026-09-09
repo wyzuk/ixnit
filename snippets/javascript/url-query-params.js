@@ -3,7 +3,6 @@
  * Uses modern URL and URLSearchParams native APIs.
  */
 
-// 1. Parse current URL query params into an object
 function getQueryParams(urlString = window.location.href) {
   const url = new URL(urlString, 'http://localhost');
   const params = {};
@@ -13,7 +12,6 @@ function getQueryParams(urlString = window.location.href) {
   return params;
 }
 
-// 2. Build a URL with query parameters safely (auto URI encodes)
 function buildUrlWithParams(baseUrl, params = {}) {
   const url = new URL(baseUrl, 'http://localhost');
   Object.entries(params).forEach(([key, value]) => {

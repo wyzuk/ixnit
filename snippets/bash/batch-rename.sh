@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
-# ==============================================================================
 # batch-rename.sh
 # Safely renames all files matching an extension to a new extension.
 # Usage: ./batch-rename.sh .jpeg .jpg
-# ==============================================================================
 
 set -e
 

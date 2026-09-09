@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
-# ==============================================================================
 # count-snippets.sh
 # Generates a quick count of notes, snippets, exercises, and experiments.
-# ==============================================================================
 
 echo "📊 Ixnit Knowledge Base Statistics:"
 echo "-----------------------------------"

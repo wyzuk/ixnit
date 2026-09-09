@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
-# ==============================================================================
 # find-large-files.sh
 # Finds and displays the top 10 largest files in the specified directory.
 # Defaults to current directory if none provided.
-# ==============================================================================
 
 TARGET_DIR="${1:-.}"
 

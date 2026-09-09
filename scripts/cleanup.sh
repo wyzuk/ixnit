@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
-# ==============================================================================
 # cleanup.sh
 # Removes temporary files, editor backups, OS debris, and dangling test output.
-# ==============================================================================
 
 set -e
 
